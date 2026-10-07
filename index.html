@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <meta name="description" content="Artificial DCP data generator for training purposes.">
+  <title>DCP Artificial Data Generator</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <section class="card">
+      <h1>DCP Artificial Data Generator v0.1</h1>
+      <p class="subtitle">Artificial DCP data generator for training purposes</p>
+
+      <div class="input-grid">
+        <div class="form-group">
+          <label for="cbrMin">CBR min [%]</label>
+          <input id="cbrMin" type="number" inputmode="decimal" min="0.5" max="100" step="0.1" value="3.0">
+          <div id="cbrMinError" class="error"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="cbrMax">CBR max [%]</label>
+          <input id="cbrMax" type="number" inputmode="decimal" min="0.5" max="100" step="0.1" value="4.0">
+          <div id="cbrMaxError" class="error"></div>
+        </div>
+      </div>
+
+      <details class="advanced">
+        <summary>Advanced options</summary>
+        <div class="advanced-grid">
+          <div class="form-group">
+            <label for="zeroReading">Zero Reading [mm] <span class="optional">(optional)</span></label>
+            <input id="zeroReading" type="number" inputmode="numeric" min="30" max="90" step="10" placeholder="Random: 30–90">
+            <div class="field-note">Leave blank for a random value in 10 mm steps.</div>
+            <div id="zeroReadingError" class="error"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="rowCount">Number of readings <span class="optional">(optional)</span></label>
+            <input id="rowCount" type="number" inputmode="numeric" min="9" max="15" step="1" placeholder="Random">
+            <div class="field-note">Leave blank for a realistic random table length.</div>
+            <div id="rowCountError" class="error"></div>
+          </div>
+        </div>
+      </details>
+
+      <button id="generateBtn" type="button">Generate data</button>
+
+      <section id="resultSection" class="result-section" hidden>
+        <div class="zero-reading-line">Zero Reading: <strong id="zeroReadingResult">—</strong></div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Blows</th>
+                <th>Total<br>Blows</th>
+                <th>Penetration<br>[mm]</th>
+              </tr>
+            </thead>
+            <tbody id="dataBody"></tbody>
+          </table>
+        </div>
+
+        <div class="result-metrics">
+          <span>DCP: <strong id="dcpResult">—</strong></span>
+          <span>Estimated CBR: <strong id="cbrResult">—</strong></span>
+          <span>Pen Rate: <strong id="penRateResult">—</strong></span>
+        </div>
+
+        <p class="result-note" id="coverageNote"></p>
+      </section>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
