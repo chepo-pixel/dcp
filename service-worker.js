@@ -1,4 +1,4 @@
-const CACHE_NAME = "dcp-generator-v01-1";
+const CACHE_NAME = "dcp-generator-v02-1";
 const FILES_TO_CACHE = [
   "./",
   "./index.html",

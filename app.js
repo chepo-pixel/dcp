@@ -1,6 +1,7 @@
 const DCP_A = 2.48;
 const DCP_B = 1.057;
 const ZERO_OPTIONS = [30, 40, 50, 60, 70, 80, 90];
+const HIGH_ZERO_OPTIONS = [100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200];
 
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
@@ -68,7 +69,9 @@ function chooseRowCount(forcedRows) {
 }
 
 function chooseZeroReading(forcedZero) {
-  return forcedZero == null ? randomChoice(ZERO_OPTIONS) : forcedZero;
+  return forcedZero == null
+    ? randomChoice(Math.random() < 0.20 ? HIGH_ZERO_OPTIONS : ZERO_OPTIONS)
+    : forcedZero;
 }
 
 function makePenetrationIncrements(rowCount, targetPenRate) {
@@ -210,8 +213,8 @@ function validateInputs(elements) {
   let forcedZero = null;
   if (zeroRaw !== "") {
     forcedZero = Number(zeroRaw);
-    if (!ZERO_OPTIONS.includes(forcedZero)) {
-      elements.zeroReadingError.textContent = "Use 30–90 mm in 10 mm steps.";
+    if (!Number.isInteger(forcedZero) || forcedZero < 0 || forcedZero > 200) {
+      elements.zeroReadingError.textContent = "Enter a whole number from 0 to 200 mm.";
       valid = false;
     }
   }

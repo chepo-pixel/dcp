@@ -13,7 +13,7 @@
 <body>
   <main class="app">
     <section class="card">
-      <h1>DCP Artificial Data Generator v0.1</h1>
+      <h1>DCP Artificial Data Generator v0.2</h1>
       <p class="subtitle">Artificial DCP data generator for training purposes</p>
 
       <div class="input-grid">
@@ -35,8 +35,8 @@
         <div class="advanced-grid">
           <div class="form-group">
             <label for="zeroReading">Zero Reading [mm] <span class="optional">(optional)</span></label>
-            <input id="zeroReading" type="number" inputmode="numeric" min="30" max="90" step="10" placeholder="Random: 30–90">
-            <div class="field-note">Leave blank for a random value in 10 mm steps.</div>
+            <input id="zeroReading" type="number" inputmode="numeric" min="0" max="200" step="1" placeholder="Random: 30–200">
+            <div class="field-note">Leave blank for random (80%: 30–90 mm; 20%: 100–200 mm).</div>
             <div id="zeroReadingError" class="error"></div>
           </div>
 
